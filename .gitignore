@@ -1,0 +1,30 @@
+# Build output
+build/
+DerivedData/
+
+# Xcode generated
+*.xcodeproj/
+*.xcworkspace/
+*.xcuserdata/
+xcuserdata/
+*.pbxuser
+*.perspectivev3
+
+# XcodeGen generated plists (regenerated from project.yml)
+App/Info.plist
+Extension/Info.plist
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# Instruments
+*.trace
+
+# CocoaPods (not used here, but just in case)
+Pods/

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>com.apple.security.app-sandbox</key>
+    <true/>
+    <!-- Read-only access to files the user selects or that are passed to us
+         by Quick Look (the system mediates access, so no extra entitlement
+         is needed beyond the sandbox itself). -->
+</dict>
+</plist>

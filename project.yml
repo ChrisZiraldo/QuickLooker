@@ -1,0 +1,75 @@
+name: QuickLooker
+options:
+  bundleIdPrefix: com.quicklooker
+  deploymentTarget:
+    macOS: "13.0"
+  xcodeVersion: "16.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MACOSX_DEPLOYMENT_TARGET: "13.0"
+    CODE_SIGN_STYLE: Automatic
+    DEVELOPMENT_TEAM: ""
+    DEBUG_INFORMATION_FORMAT: dwarf-with-dsym
+
+targets:
+  QuickLooker:
+    type: application
+    platform: macOS
+    deploymentTarget: "13.0"
+    sources:
+      - path: App
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: QuickLooker
+        CFBundleIdentifier: com.quicklooker.app
+        CFBundleName: QuickLooker
+        CFBundleVersion: "1.0.0"
+        CFBundleShortVersionString: "1.0.0"
+        LSUIElement: true
+        NSHumanReadableCopyright: "Copyright © 2024. All rights reserved."
+        NSPrincipalClass: NSApplication
+        NSHighResolutionCapable: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.quicklooker.app
+        INFOPLIST_FILE: App/Info.plist
+        CODE_SIGN_ENTITLEMENTS: App/QuickLooker.entitlements
+    dependencies:
+      - target: QuickLookerExtension
+        embed: true
+
+  QuickLookerExtension:
+    type: app-extension
+    platform: macOS
+    deploymentTarget: "13.0"
+    sources:
+      - path: Extension
+    info:
+      path: Extension/Info.plist
+      properties:
+        CFBundleDisplayName: QuickLooker Extension
+        CFBundleIdentifier: com.quicklooker.app.preview-extension
+        CFBundleName: QuickLookerExtension
+        CFBundleVersion: "1.0.0"
+        CFBundleShortVersionString: "1.0.0"
+        NSHumanReadableCopyright: "Copyright © 2024. All rights reserved."
+        NSExtension:
+          NSExtensionAttributes:
+            QLSupportedContentTypes:
+              - public.data
+              - public.content
+              - public.unix-executable
+              - net.daringfireball.markdown
+            QLSupportsSearchableItems: false
+          NSExtensionPointIdentifier: com.apple.quicklook.preview
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).PreviewViewController
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.quicklooker.app.preview-extension
+        INFOPLIST_FILE: Extension/Info.plist
+        APPLICATION_EXTENSION_API_ONLY: YES
+        CODE_SIGN_ENTITLEMENTS: Extension/QuickLookerExtension.entitlements
